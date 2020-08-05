@@ -1,0 +1,53 @@
+.itemLight {
+  box-sizing: border-box;
+  margin-bottom: 5px;
+  color: #363638;
+  width: 515px;
+  border: 1px solid gray;
+  padding: 5px;
+  border-radius: 5px 5px 5px 5px;
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  box-shadow: 0px 4px 9px 0px #000000;
+}
+
+.itemDark {
+  box-sizing: border-box;
+  margin-bottom: 5px;
+  color: #f5f5f5;
+  width: 515px;
+  border: 1px solid #f5f5f5;
+  padding: 5px;
+  border-radius: 5px 5px 5px 5px;
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  box-shadow: 0px 4px 7px 0px #000000;
+}
+
+p {
+  margin: 0px;
+  display: inline-block;
+}
+
+.btnLight {
+  display: inline-block;
+  margin: 0px;
+  margin-left: 10px;
+  border: 1px solid #b9b9bb;
+  background-color: #c02626;
+  border-radius: 4px 4px 4px 4px;
+  color: #f5f5f5;
+}
+
+
+.btnDark {
+  display: inline-block;
+  margin: 0px;
+  margin-left: 10px;
+  border: 1px solid #f5f5f5;
+  background-color:   #c02626;
+  border-radius: 4px 4px 4px 4px;
+  color: #f5f5f5;
+}
