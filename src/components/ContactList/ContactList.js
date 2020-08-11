@@ -1,19 +1,21 @@
-import React from "react";
-import { connect } from "react-redux";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import React from 'react';
+import {connect} from 'react-redux';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
-import ContactItem from "../ContactItem/ContactItem";
+import contactsSelectors from '../../redux/selectors/contactsSelectors';
+
+import ContactItem from '../ContactItem/ContactItem';
 
 import animation from './Animation.module.css';
-import s from "./ContactList.module.css";
+import s from './ContactList.module.css';
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({contacts}) => {
   return (
     <TransitionGroup component="ul" className={s.list}>
-      {contacts.map(({ id }) => {
+      {contacts.map(({id}) => {
         return (
           <CSSTransition key={id} timeout={250} classNames={animation}>
-            <ContactItem id={id}/>
+            <ContactItem id={id} />
           </CSSTransition>
         );
       })}
@@ -21,16 +23,8 @@ const ContactList = ({ contacts }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const { items, filter } = state.contacts;
-  const normalizeFilter = filter.toLowerCase();
-  const visibleContacts = items.filter(({ name }) =>
-    name.toLowerCase().includes(normalizeFilter)
-  );
-
-  return {
-    contacts: visibleContacts,
-  };
-};
+const mapStateToProps = state => ({
+  contacts: contactsSelectors.getVisibleContacts(state),
+});
 
 export default connect(mapStateToProps)(ContactList);

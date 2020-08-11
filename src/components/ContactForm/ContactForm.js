@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {addName} from '../../redux/actions/index';
+import operations from '../../redux/actions/operations';
 import {CSSTransition} from 'react-transition-group';
 
 import InputMask from 'react-input-mask';
@@ -16,19 +16,18 @@ const INITIAL_STATE = {
 };
 
 class ContactForm extends Component {
-  state = {
-    ...INITIAL_STATE,
-  };
+  state = INITIAL_STATE;
 
   handleSubmit = e => {
     e.preventDefault();
     const {name} = this.state;
     const {items} = this.props.contacts;
+    const {onAddName} = this.props;
     const isSameName = items.find(
       item => item.name.toLowerCase() === name.toLowerCase(),
     );
     if (!isSameName) {
-      this.props.onAddName(this.state);
+      onAddName(this.state);
       this.setState({
         ...INITIAL_STATE,
       });
@@ -100,14 +99,10 @@ class ContactForm extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    ...state,
-  };
-};
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
-  onAddName: addName,
+  onAddName: operations.addName,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

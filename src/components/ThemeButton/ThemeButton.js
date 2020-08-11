@@ -1,28 +1,32 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {toggleTheme} from '../../redux/actions/index';
+import operations from '../../redux/actions/operations';
+import themeSelectors from '../../redux/selectors/themeSelectors';
 
 import s from './ThemeButton.module.css';
 
 const ThemeButton = ({theme, toggleTheme}) => {
+  let currentTheme;
+  theme === 'Light' ? currentTheme = 'Dark': currentTheme = 'Light';
   return (
     <button
       className={s[`btn${theme}`]}
       type="button"
-      onClick={() => toggleTheme()}
+      onClick={() => toggleTheme(currentTheme)}
     >
       Theme: {theme}
     </button>
   );
 };
-const mapStateToProps = ({theme}) => {
+
+const mapStateToProps = state => {
   return {
-    theme: theme.themeColor,
+    theme: themeSelectors.getTheme(state),
   };
 };
 const mapDispatchToProps = {
-  toggleTheme: toggleTheme,
+  toggleTheme: operations.toggleTheme,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ThemeButton);
